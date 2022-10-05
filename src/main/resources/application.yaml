@@ -1,0 +1,6 @@
+spring:
+  r2dbc:
+    url: r2dbc:pool:postgresql://postgres:postgres@localhost:5433/lista_jogos
+    password: postgres
+    username: postgres
+
