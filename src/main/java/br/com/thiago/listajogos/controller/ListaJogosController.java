@@ -1,7 +1,7 @@
 package br.com.thiago.listajogos.controller;
 
-import br.com.thiago.listajogos.domain.Jogo;
-import br.com.thiago.listajogos.dto.JogoDto;
+import br.com.thiago.listajogos.dto.JogoRequest;
+import br.com.thiago.listajogos.dto.JogoResponse;
 import br.com.thiago.listajogos.serive.ListaJogosService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
@@ -21,12 +21,12 @@ public class ListaJogosController {
     private final ListaJogosService listaJogosService;
 
     @GetMapping
-    public Flux<Jogo> getListaJogos() {
+    public Flux<JogoResponse> getListaJogos() {
         return listaJogosService.getListaJogos();
     }
 
     @PostMapping
-    public Mono<Jogo> saveJogo(JogoDto jogoDto) {
-        return listaJogosService.save(jogoDto);
+    public Mono<JogoResponse> saveJogo(JogoRequest jogoRequest) {
+        return listaJogosService.save(jogoRequest);
     }
 }
