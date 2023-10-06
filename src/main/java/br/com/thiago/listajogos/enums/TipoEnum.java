@@ -7,17 +7,22 @@ import java.util.stream.Stream;
 
 @AllArgsConstructor
 @Getter
-public enum TipoEnum {
+public enum TipoEnum implements EnumSerializable {
 
     DIGITAL("digital"),
     FISICO("físico");
 
-    private final String value;
+    private final String code;
 
     public static TipoEnum findByValue(final String value) {
         return Stream.of(values())
                 .filter(v -> v.getValue().equalsIgnoreCase(value))
                 .findFirst()
                 .orElse(null);
+    }
+
+    @Override
+    public String getValue() {
+        return this.code;
     }
 }
