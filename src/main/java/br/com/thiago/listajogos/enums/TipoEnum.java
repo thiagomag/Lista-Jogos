@@ -10,7 +10,7 @@ import java.util.stream.Stream;
 public enum TipoEnum implements EnumSerializable {
 
     DIGITAL("digital"),
-    FISICO("físico");
+    FISICO("fisico");
 
     private final String code;
 

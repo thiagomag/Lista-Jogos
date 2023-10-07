@@ -41,7 +41,6 @@ public class CustomR2dbcConfiguration extends AbstractR2dbcConfiguration {
                 .maxSize(r2dbcProperties.getPool().getMaxSize())
                 .acquireRetry(5)
                 .maxAcquireTime(Duration.ofMinutes(1))
-                .validationQuery(r2dbcProperties.getPool().getValidationQuery())
                 .build();
 
         return new ConnectionPool(connectionPoolConfiguration);

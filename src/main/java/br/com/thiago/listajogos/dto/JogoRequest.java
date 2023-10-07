@@ -1,6 +1,8 @@
 package br.com.thiago.listajogos.dto;
 
 
+import br.com.thiago.listajogos.enums.PlataformaEnum;
+import br.com.thiago.listajogos.enums.TipoEnum;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
@@ -25,9 +27,9 @@ public class JogoRequest {
 
     private String nome;
     private String estudio;
-    private String plataforma;
+    private PlataformaEnum plataforma;
     private Integer anoLancamento;
     private Boolean necessitaAssinatura;
     private String urlFoto;
-    private String tipo;
+    private TipoEnum tipo;
 }

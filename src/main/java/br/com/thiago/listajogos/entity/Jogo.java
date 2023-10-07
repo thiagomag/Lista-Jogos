@@ -1,4 +1,4 @@
-package br.com.thiago.listajogos.domain;
+package br.com.thiago.listajogos.entity;
 
 
 import br.com.thiago.listajogos.enums.PlataformaEnum;
@@ -41,4 +41,6 @@ public class Jogo {
     @NotNull
     private TipoEnum tipo;
     private String urlFoto;
+    private String emailConta;
+    private String username;
 }

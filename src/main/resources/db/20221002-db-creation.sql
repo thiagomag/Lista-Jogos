@@ -6,6 +6,9 @@ CREATE TABLE lista_jogos (
     ano_lancamento integer not null,
     necessita_assinatura bool not null,
     tipo varchar(20) not null,
-    url_foto text null
+    url_foto text null,
+    email_conta varchar(100) null,
+    username varchar(100) null
 );
 
+DROP TABLE lista_jogos;

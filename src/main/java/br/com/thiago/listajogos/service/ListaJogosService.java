@@ -1,4 +1,4 @@
-package br.com.thiago.listajogos.serive;
+package br.com.thiago.listajogos.service;
 
 import br.com.thiago.listajogos.adapter.JogoAdapter;
 import br.com.thiago.listajogos.adapter.JogoResponseAdapter;

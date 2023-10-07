@@ -2,7 +2,7 @@ package br.com.thiago.listajogos.controller;
 
 import br.com.thiago.listajogos.dto.JogoRequest;
 import br.com.thiago.listajogos.dto.JogoResponse;
-import br.com.thiago.listajogos.serive.ListaJogosService;
+import br.com.thiago.listajogos.service.ListaJogosService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
