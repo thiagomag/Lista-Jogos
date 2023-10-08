@@ -4,6 +4,6 @@ spring:
     password: postgres
     username: postgres
     pool:
-      initial-size: 10
+      initial-size: 1
       max-size: 10
-
+      validation-query: SELECT 1
