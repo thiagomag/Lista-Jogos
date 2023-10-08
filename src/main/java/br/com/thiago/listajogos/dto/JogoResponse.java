@@ -32,4 +32,6 @@ public class JogoResponse {
     private Boolean necessitaAssinatura;
     private TipoEnum tipo;
     private String urlFoto;
+    private String emailConta;
+    private String username;
 }

@@ -32,4 +32,6 @@ public class JogoRequest {
     private Boolean necessitaAssinatura;
     private String urlFoto;
     private TipoEnum tipo;
+    private String emailConta;
+    private String username;
 }
