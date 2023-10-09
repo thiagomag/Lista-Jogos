@@ -7,3 +7,8 @@ spring:
       initial-size: 1
       max-size: 10
       validation-query: SELECT 1
+
+commons:
+  date:
+    serializer: yyyy-MM-dd'T'HH:mm:ss
+    deserializer: yyyy-MM-dd'T'HH:mm:ssz, yyyy-MM-dd'T'HH:mm:ss.[SSSSSS][SSSSS][SSSS][SSS]'Z', yyyy-MM-dd'T'HH:mm:ss.[SSSSSS][SSSSS][SSSS][SSS], yyyy-MM-dd'T'HH:mm:ss.[SSSSSS][SSSSS][SSSS][SSS]XXX, yyyy-MM-dd'T'HH:mm:ss.S'Z', yyyy-MM-dd'T'HH:mm:ss, yyyy-MM-dd'T'HH:mm:ss.SSSX, yyyy-MM-dd HH:mm:ss, yyyy-MM-dd'T'HH:mm:ss.SSSXXX, yyyy-MM-dd'T'HH:mm:ss.SS'Z'
