@@ -9,6 +9,9 @@ import java.util.stream.Stream;
 @Getter
 public enum PlataformaEnum implements EnumSerializable {
 
+    AMAZONGAMES("amazon-games"),
+    BATTLENET("battle-net"),
+    EA("ea"),
     EPICGAMES("epic-games"),
     GAMEBOY("gameboy"),
     GAMEBOYADVANCE("gameboy-advance"),
@@ -20,7 +23,6 @@ public enum PlataformaEnum implements EnumSerializable {
     NES("nes"),
     MASTESYSTEM("master-system"),
     MEGADRIVE("mega-drive"),
-    ORIGIN("origin"),
     PSONE("psone"),
     PS2("ps2"),
     PS3("ps3"),

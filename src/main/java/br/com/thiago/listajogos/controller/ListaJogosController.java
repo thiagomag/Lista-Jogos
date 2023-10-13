@@ -5,10 +5,7 @@ import br.com.thiago.listajogos.dto.JogoResponse;
 import br.com.thiago.listajogos.service.ListaJogosService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
@@ -21,12 +18,28 @@ public class ListaJogosController {
     private final ListaJogosService listaJogosService;
 
     @GetMapping
-    public Flux<JogoResponse> getListaJogos() {
-        return listaJogosService.getListaJogos();
+    public Flux<JogoResponse> getListaJogos(@RequestParam JogoRequest searchRequest) {
+        return listaJogosService.getListaJogos(searchRequest);
+    }
+
+    @GetMapping("/{idJogo}")
+    public Mono<JogoResponse> findJogoById(@PathVariable Long idJogo) {
+        return listaJogosService.findJogoById(idJogo);
     }
 
     @PostMapping
-    public Mono<JogoResponse> saveJogo(JogoRequest jogoRequest) {
+    public Mono<JogoResponse> saveJogo(@RequestBody JogoRequest jogoRequest) {
         return listaJogosService.save(jogoRequest);
+    }
+
+    @PutMapping("/{idJogo}")
+    public Mono<JogoResponse> updateJogo(@PathVariable Long idJogo,
+                                         @RequestBody JogoRequest jogoRequest) {
+        return listaJogosService.updateJogo(jogoRequest, idJogo);
+    }
+
+    @DeleteMapping("/{idJogo}")
+    public Mono<Void> updateJogo(@PathVariable Long idJogo) {
+        return listaJogosService.deletarJogo(idJogo);
     }
 }

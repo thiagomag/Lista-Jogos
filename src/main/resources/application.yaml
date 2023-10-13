@@ -3,10 +3,6 @@ spring:
     url: r2dbc:pool:postgresql://postgres:postgres@localhost:5433/lista_jogos
     password: postgres
     username: postgres
-    pool:
-      initial-size: 1
-      max-size: 10
-      validation-query: SELECT 1
 
 commons:
   date:
