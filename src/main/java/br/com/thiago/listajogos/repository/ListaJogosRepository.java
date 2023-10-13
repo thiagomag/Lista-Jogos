@@ -9,7 +9,15 @@ import reactor.core.publisher.Flux;
 
 public interface ListaJogosRepository extends ReactiveCrudRepository<Jogo, Long> {
 
-    @Query("SELECT * FROM lista_jogos")
+    @Query("SELECT lj.* FROM lista_jogos lj " +
+            "WHERE (:nome = '' OR lj.nome ilike  '%' || :nome || '%') " +
+            "AND (:estudio = '' OR lj.estudio ilike '%' || :estudio || '%') " +
+            "AND (:plataforma = '' OR lj.plataforma ilike '%' || :plataforma || '%') " +
+            "AND (:anoLancamento IS NULL OR lj.ano_lancamento = :anoLancamento) " +
+            "AND (:necessitaAssinatura IS NULL OR lj.necessita_assinatura = :necessitaAssinatura) " +
+            "AND (:tipo = '' OR lj.tipo ilike :tipo) " +
+            "AND (:emailConta = '' OR lj.email_conta ilike '%' || :emailConta || '%') " +
+            "AND (:username = '' OR lj.username ilike '%' || :username || '%') ")
     Flux<JogoResponse> findBySearchRequest(@Param("nome") String nome,
                                            @Param("tipo") String tipo,
                                            @Param("estudio") String estudio,
