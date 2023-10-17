@@ -5,13 +5,20 @@ import br.com.thiago.listajogos.adapter.JogoResponseAdapter;
 import br.com.thiago.listajogos.dto.JogoRequest;
 import br.com.thiago.listajogos.dto.JogoResponse;
 import br.com.thiago.listajogos.entity.Jogo;
+import br.com.thiago.listajogos.enums.PlataformaEnum;
+import br.com.thiago.listajogos.enums.TipoEnum;
 import br.com.thiago.listajogos.repository.ListaJogosRepository;
+import com.opencsv.CSVReader;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.webjars.NotFoundException;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Optional;
 
 @Service
@@ -29,7 +36,8 @@ public class ListaJogosService {
         }
         return listaJogosRepository.findBySearchRequest(searchRequest.getNome(), searchRequest.getTipo().getCode(),
                 searchRequest.getEstudio(), searchRequest.getPlataforma().getCode(), searchRequest.getUsername(),
-                searchRequest.getAnoLancamento(), searchRequest.getEmailConta(), searchRequest.getNecessitaAssinatura());
+                searchRequest.getAnoLancamento(), searchRequest.getEmailConta(), searchRequest.getNecessitaAssinatura())
+                .sort(Comparator.comparing(JogoResponse::getNome));
     }
 
     public Mono<JogoResponse> save(JogoRequest jogoRequest) {
@@ -68,5 +76,32 @@ public class ListaJogosService {
 
     public Mono<Void> deletarJogo(Long idJogo) {
         return listaJogosRepository.deleteById(idJogo);
+    }
+
+    public Mono<String> processarCSV() throws IOException {
+        try {
+            final var reader = new CSVReader(new FileReader("jogos.csv"));
+            final var listaJogos = new ArrayList<Jogo>();
+            final var records = reader.readAll();
+            for (String[] record : records) {
+                final var jogo = Jogo.builder()
+                        .id(Long.valueOf(record[0]))
+                        .nome(record[1])
+                        .estudio(record[2])
+                        .plataforma(PlataformaEnum.valueOf(record[3]))
+                        .anoLancamento(Integer.valueOf(record[4]))
+                        .necessitaAssinatura(Boolean.valueOf(record[5]))
+                        .tipo(TipoEnum.valueOf(record[6]))
+                        .urlFoto(record[7])
+                        .emailConta(record[8])
+                        .username(record[9])
+                        .build();
+                listaJogos.add(jogo);
+            }
+            return listaJogosRepository.saveAll(listaJogos)
+                    .then(Mono.just("OK"));
+        } catch (IOException e) {
+            throw new IOException();
+        }
     }
 }

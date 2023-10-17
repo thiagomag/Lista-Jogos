@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+import java.io.IOException;
+
 @RestController
 @RequestMapping("/jogos")
 @RequiredArgsConstructor
@@ -41,5 +43,10 @@ public class ListaJogosController {
     @DeleteMapping("/{idJogo}")
     public Mono<Void> updateJogo(@PathVariable Long idJogo) {
         return listaJogosService.deletarJogo(idJogo);
+    }
+
+    @PostMapping("/processarCSV")
+    public Mono<String> processarCSV() throws IOException {
+        return listaJogosService.processarCSV();
     }
 }
